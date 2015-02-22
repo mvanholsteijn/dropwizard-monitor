@@ -16,7 +16,7 @@ public class HelloWorldService extends Application<HelloWorldConfiguration> {
 
 	@Override
 	public void initialize(Bootstrap<HelloWorldConfiguration> bootstrap) {
-		bootstrap.addBundle(new AssetsBundle("/public", "/", "index.html"));
+		bootstrap.addBundle(new AssetsBundle("/assets", "/public", "index.html"));
 	}
 
 	@Override
