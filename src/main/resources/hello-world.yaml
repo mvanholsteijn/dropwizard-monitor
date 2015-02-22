@@ -1,2 +1,2 @@
-template: Hello %s
-defaultName: World
+minimumNumberOfBytesFree: 1048576
+

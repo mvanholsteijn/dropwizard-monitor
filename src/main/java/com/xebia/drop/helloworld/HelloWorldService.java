@@ -1,29 +1,31 @@
 package com.xebia.drop.helloworld;
 
-import com.xebia.drop.helloworld.health.TemplateHealthCheck;
-import com.xebia.drop.helloworld.resource.HelloWorldResource;
-import com.yammer.dropwizard.Service;
-import com.yammer.dropwizard.config.Bootstrap;
-import com.yammer.dropwizard.config.Environment;
+import io.dropwizard.Application;
+import io.dropwizard.assets.AssetsBundle;
+import io.dropwizard.setup.Bootstrap;
+import io.dropwizard.setup.Environment;
 
-public class HelloWorldService extends Service<HelloWorldConfiguration> {
+import com.xebia.drop.helloworld.health.AvailableMemoryCheck;
+import com.xebia.drop.helloworld.resource.StatusResource;
+
+public class HelloWorldService extends Application<HelloWorldConfiguration> {
 
 	public static void main(String[] args) throws Exception {
-        new HelloWorldService().run(args);
-    }
+		new HelloWorldService().run(args);
+	}
 
-    @Override
-    public void initialize(Bootstrap<HelloWorldConfiguration> bootstrap) {
-        bootstrap.setName("hello-world");
-    }
+	@Override
+	public void initialize(Bootstrap<HelloWorldConfiguration> bootstrap) {
+		bootstrap.addBundle(new AssetsBundle("/public", "/", "index.html"));
+	}
 
-    @Override
-    public void run(HelloWorldConfiguration configuration,
-                    Environment environment) {
-        final String template = configuration.getTemplate();
-        final String defaultName = configuration.getDefaultName();
-        environment.addResource(new HelloWorldResource(template, defaultName));
-        environment.addHealthCheck(new TemplateHealthCheck(template));
-    }
+	@Override
+	public void run(HelloWorldConfiguration configuration,
+			Environment environment) {
+		environment.jersey().register(new StatusResource(8080));
+		environment.healthChecks().register("available-memory",
+				new AvailableMemoryCheck(1024 * 1024));
+
+	}
 
 }

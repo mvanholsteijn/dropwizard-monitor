@@ -4,16 +4,21 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.xebia.dropwizard</groupId>
-	<artifactId>my-server</artifactId>
+	<artifactId>paas-monitor</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
 	<dependencies>
-		<!-- none yet -->
 		<dependency>
-			<groupId>com.yammer.dropwizard</groupId>
+			<groupId>io.dropwizard</groupId>
 			<artifactId>dropwizard-core</artifactId>
-			<version>0.6.2</version>
+			<version>0.7.1</version>
 		</dependency>
+		<dependency>
+			<groupId>io.dropwizard</groupId>
+			<artifactId>dropwizard-assets</artifactId>
+			<version>0.7.1</version>
+		</dependency>
+
 	</dependencies>
 
 	<properties>

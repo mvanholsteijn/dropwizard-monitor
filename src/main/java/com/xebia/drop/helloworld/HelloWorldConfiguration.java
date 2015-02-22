@@ -1,24 +1,15 @@
 package com.xebia.drop.helloworld;
 
-import org.hibernate.validator.constraints.NotEmpty;
+import io.dropwizard.Configuration;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.yammer.dropwizard.config.Configuration;
 
 public class HelloWorldConfiguration extends Configuration {
-    @NotEmpty
     @JsonProperty
-    private String template;
+    private int minimumNumberOfBytesFree = 1024 * 1024;
 
-    @NotEmpty
-    @JsonProperty
-    private String defaultName = "Stranger";
 
-    public String getTemplate() {
-        return template;
-    }
-
-    public String getDefaultName() {
-        return defaultName;
+    public int getMinimumNumberOfBytesFree() {
+        return minimumNumberOfBytesFree;
     }
 }
