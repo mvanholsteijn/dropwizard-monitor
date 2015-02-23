@@ -1,4 +1,4 @@
-package com.xebia.drop.helloworld.core;
+package com.xebia.dropwizard.monitor.core;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 

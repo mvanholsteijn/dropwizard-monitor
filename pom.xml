@@ -20,6 +20,7 @@
     <!-- use UTF-8 for everything -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <mainClass>com.xebia.dropwizard.monitor.MonitorService</mainClass>
   </properties>
   <build>
     <plugins>
@@ -48,7 +49,7 @@
         </executions>
         <configuration>
           <assembleDirectory>${project.build.directory}/appassembler</assembleDirectory>
-          <extraJvmArguments>-Ddw.server.applicationConnectors[0].port=${PORT:-9090} -Xms256m -Xmx256m</extraJvmArguments>
+          <extraJvmArguments>-Ddw.server.applicationConnectors[0].port=${PORT:-8090} </extraJvmArguments>
           <generateRepository>false</generateRepository>
           <repositoryName>lib</repositoryName>
           <repositoryLayout>flat</repositoryLayout>
@@ -58,11 +59,11 @@
           <copyConfigurationDirectory>true</copyConfigurationDirectory>
           <programs>
             <program>
-              <mainClass>com.xebia.drop.helloworld.HelloWorldService</mainClass>
+              <mainClass>${mainClass}</mainClass>
               <name>dropwizard-monitor</name>
               <commandLineArguments>
                 <commandLineArgument>server</commandLineArgument>
-                <commandLineArgument>$BASEDIR/etc/hello-world.yaml</commandLineArgument>
+                <commandLineArgument>$BASEDIR/etc/server-config.yaml</commandLineArgument>
               </commandLineArguments>
               <platforms>
                 <platform>unix</platform>
@@ -96,7 +97,7 @@
         <configuration>
           <archive>
             <manifest>
-              <mainClass>com.xebia.drop.helloworld.HelloWorldService</mainClass>
+              <mainClass>${mainClass}</mainClass>
               <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
               <addClasspath>true</addClasspath>
             </manifest>

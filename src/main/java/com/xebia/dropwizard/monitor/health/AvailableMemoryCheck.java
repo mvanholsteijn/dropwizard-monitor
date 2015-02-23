@@ -1,4 +1,4 @@
-package com.xebia.drop.helloworld.health;
+package com.xebia.dropwizard.monitor.health;
 
 import com.codahale.metrics.health.HealthCheck;
 

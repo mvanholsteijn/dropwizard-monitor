@@ -1,4 +1,4 @@
-package com.xebia.drop.helloworld.resource;
+package com.xebia.dropwizard.monitor.resource;
 
 
 import javax.ws.rs.GET;
@@ -7,13 +7,14 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import com.codahale.metrics.annotation.Timed;
-import com.xebia.drop.helloworld.core.Status;
+import com.xebia.dropwizard.monitor.core.Status;
 
 @Path("/status")
 @Produces(MediaType.APPLICATION_JSON)
 public class StatusResource {
 
-	int portNumber;
+    int portNumber;
+
     public StatusResource(int portNumber) {
     	this.portNumber = portNumber;
     }
