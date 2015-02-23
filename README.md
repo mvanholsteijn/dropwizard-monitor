@@ -7,10 +7,12 @@ how to deploy
 =============
 you can deploy this application to Cloudfoundry/Stackato without any special measures: it should be detected by the Java distzip build pack.
 
-$ mvn clean package
-$ cd target
-$ stackato push -n 
-$ stackato open
+```bash
+mvn clean package
+cd target
+stackato push -n 
+stackato open
+```
 
 maven 
 =====
