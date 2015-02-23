@@ -1,0 +1,11 @@
+applications:
+- name: @project.name@
+  path: ./@project.artifactId@-@project.version@-bin.zip
+  mem: 256M
+  disk: 256M
+  instances: 2
+  env:
+    RELEASE: @project.version@
+  stackato:
+    min_version:
+      server: 3.4.2
