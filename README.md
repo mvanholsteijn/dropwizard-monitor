@@ -21,13 +21,13 @@ maven
 - the required parameters for dropwizard startup are specified in the appassembler configuration too.
 ```xml
             <program>
-		....
+              <...>...</....>
               <commandLineArguments>
                 <commandLineArgument>server</commandLineArgument>
                 <commandLineArgument>$BASEDIR/etc/server-config.yaml</commandLineArgument>
               </commandLineArguments>
 ```
-- appassembler generates a startup script and overrides the listen port with the Paas provided PORT environment variable. Note that the -Xms and -Xmx are removed, as they are porvided by the PaaS in JAVA_OPTS, depending on the amount of memory assigned to the application:
+- appassembler generates a startup script and overrides the listen port with the Paas provided PORT environment variable. 
 ```xml
 	<extraJvmArguments>-Ddw.server.applicationConnectors[0].port=${PORT:-8090} </extraJvmArguments>
 ```
