@@ -11,3 +11,26 @@ $ mvn clean package
 $ cd target
 $ stackato push -n 
 $ stackato open
+
+maven 
+=====
+- appassembler is used to generate a distzip style java buildpack. A distzip style java buildpack is discovered by a bin/ directory and a lib/ directory with jar files. in src/assembly/bin.xml the base is removed:
+```xml
+	<includeBaseDirectory>false</includeBaseDirectory>
+```
+- the required parameters for dropwizard startup are specified in the appassembler configuration too.
+```xml
+            <program>
+		....
+              <commandLineArguments>
+                <commandLineArgument>server</commandLineArgument>
+                <commandLineArgument>$BASEDIR/etc/server-config.yaml</commandLineArgument>
+              </commandLineArguments>
+```
+- appassembler generates a startup script and overrides the listen port with the Paas provided PORT environment variable. Note that the -Xms and -Xmx are removed, as they are porvided by the PaaS in JAVA_OPTS, depending on the amount of memory assigned to the application:
+```xml
+	<extraJvmArguments>-Ddw.server.applicationConnectors[0].port=${PORT:-8090} </extraJvmArguments>
+```
+- No memory settings are passed in (-Xms, -Xmx). they are  provided by the PaaS in JAVA_OPTS environment variable, and are calculated based on the the amount of 
+memory assigned to the application.
+
